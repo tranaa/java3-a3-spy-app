@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <context-param>
+        <param-name>agents</param-name>
+        <param-value>
+            Jane Blond:Johnny English:Austin Powers
+        </param-value>
+    </context-param>
+    
+    <context-param>
+        <param-name>gadgets</param-name>
+        <param-value>
+            Exploading Cigar:Voice Controlled Rolls Royce:Switchblade Shoe
+        </param-value>
+    </context-param>
+    
+    <context-param>
+        <param-name>filterWords</param-name>
+        <param-value>
+            Queen:Cigar
+        </param-value>
+    </context-param>
+    <listener>
+        <listener-class>
+            com.tranaa.aaron_vinayak_a3.listeners.AgentContextListener
+        </listener-class>
+    </listener>
+    <servlet>
+        <servlet-name>CreateMission</servlet-name>
+        <servlet-class>com.tranaa.aaron_vinayak_a3.servlets.CreateMission</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteMission</servlet-name>
+        <servlet-class>com.tranaa.aaron_vinayak_a3.servlets.DeleteMission</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateMission</servlet-name>
+        <url-pattern>/CreateMission.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteMission</servlet-name>
+        <url-pattern>/DeleteMission.do</url-pattern>
+    </servlet-mapping>
+    <filter>
+        <filter-name>CensorFilter</filter-name>
+        <filter-class>com.tranaa.aaron_vinayak_a3.filters.CensorFilter</filter-class>
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>CensorFilter</filter-name>
+        <url-pattern>/viewMissions.jsp</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+    
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
